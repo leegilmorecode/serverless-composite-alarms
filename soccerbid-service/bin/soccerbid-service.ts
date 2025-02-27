@@ -4,16 +4,17 @@ import 'source-map-support/register';
 
 import * as cdk from 'aws-cdk-lib';
 
+import { getEnvironmentConfig } from '../app-config';
 import { SoccerbidServiceStatefulStack } from '../stateful/stateful';
 import { SoccerbidServiceStatelessStack } from '../stateless/stateless';
 import { Stage } from '../types';
-import { getEnvironmentConfig } from '../app-config';
 import { getStage } from '../utils';
 
 const stage = getStage(process.env.STAGE as Stage) as Stage;
 const appConfig = getEnvironmentConfig(stage);
 
 const app = new cdk.App();
+
 const statefulStack = new SoccerbidServiceStatefulStack(
   app,
   `SoccerbidServiceStatefulStack-${stage}`,
@@ -23,7 +24,8 @@ const statefulStack = new SoccerbidServiceStatefulStack(
     stateful: appConfig.stateful,
   },
 );
-const statelessStack = new SoccerbidServiceStatelessStack(
+
+new SoccerbidServiceStatelessStack(
   app,
   `SoccerbidServiceStatelessStack-${stage}`,
   {

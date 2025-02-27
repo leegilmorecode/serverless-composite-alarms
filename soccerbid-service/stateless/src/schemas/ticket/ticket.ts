@@ -12,7 +12,7 @@ export const schema = {
     'price',
   ],
   maxProperties: 10,
-  minProperties: 7,
+  minProperties: 10,
   properties: {
     id: { type: 'string' },
     pk: { type: 'string', pattern: '^TICKET#.*$' },
@@ -23,7 +23,6 @@ export const schema = {
     eventName: { type: 'string', minLength: 1 },
     sellerId: { type: 'string', minLength: 1 },
     price: { type: 'number', minimum: 0 },
-    currentBid: { type: 'number', minimum: 0, nullable: true },
-    lockExpiry: { type: 'string', format: 'date-time', nullable: true },
+    lockExpiry: { type: 'number' },
   },
 };

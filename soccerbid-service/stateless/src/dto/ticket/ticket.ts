@@ -8,8 +8,18 @@ export type Ticket = {
   eventName: string;
   sellerId: string;
   price: number;
-  currentBid?: number;
-  lockExpiry?: string;
+  lockExpiry: number;
+};
+
+export type TicketResponse = {
+  id: string; // ticketId
+  created: string;
+  updated: string;
+  eventName: string;
+  sellerId: string;
+  price: number;
 };
 
 export type Tickets = Ticket[];
+
+export type TicketResponses = { items: TicketResponse[]; nextToken?: string };

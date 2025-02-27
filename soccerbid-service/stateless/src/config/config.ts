@@ -15,4 +15,17 @@ export const config = convict({
     default: '',
     env: 'TABLE_NAME',
   },
+  // indexes
+  typeIndex: {
+    doc: 'The index to use for querying tickets',
+    format: String,
+    default: 'TypeIndex',
+  },
+  // add latency
+  addLatency: {
+    doc: 'A flag to add latency to our responses for testing the alarms',
+    format: String,
+    default: 'false',
+    env: 'ADD_LATENCY',
+  },
 }).validate({ allowed: 'strict' });

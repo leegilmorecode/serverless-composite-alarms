@@ -1,0 +1,65 @@
+{
+  "info": {
+    "_postman_id": "60f72e37-153a-452e-9681-0850e9692caa",
+    "name": "SoccerBids",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "752706"
+  },
+  "item": [
+    {
+      "name": "Get Tickets",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://your-rest-api-id.execute-api.your-region.amazonaws.com/api/v1/tickets/?direction=desc",
+          "protocol": "https",
+          "host": [
+            "your-rest-api-id",
+            "execute-api",
+            "your-region",
+            "amazonaws",
+            "com"
+          ],
+          "path": ["api", "v1", "tickets", ""],
+          "query": [
+            {
+              "key": "direction",
+              "value": "desc"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Bid",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"ticketId\": \"83469897-8b1d-4d76-a342-78b65712eafe\",\n    \"bidderId\": \"333\",\n    \"amount\": 1101\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://your-rest-api-id.execute-api.your-region.amazonaws.com/api/v1/bids/",
+          "protocol": "https",
+          "host": [
+            "your-rest-api-id",
+            "execute-api",
+            "your-region",
+            "amazonaws",
+            "com"
+          ],
+          "path": ["api", "v1", "bids", ""]
+        }
+      },
+      "response": []
+    }
+  ]
+}

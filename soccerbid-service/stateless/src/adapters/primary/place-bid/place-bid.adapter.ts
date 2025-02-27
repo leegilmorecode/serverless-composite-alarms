@@ -1,17 +1,17 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { MetricUnit, Metrics } from '@aws-lambda-powertools/metrics';
+import { BidResponse } from '@dto/bid';
 import { errorHandler, getHeaders, logger, schemaValidator } from '@shared';
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
-import { Bid } from '@dto/bid';
-import { PlaceBid } from '@dto/place-bid';
-import { Tracer } from '@aws-lambda-powertools/tracer';
-import { ValidationError } from '@errors/validation-error';
-import { captureLambdaHandler } from '@aws-lambda-powertools/tracer/middleware';
-import { config } from '@config';
-import httpErrorHandler from '@middy/http-error-handler';
 import { injectLambdaContext } from '@aws-lambda-powertools/logger/middleware';
 import { logMetrics } from '@aws-lambda-powertools/metrics/middleware';
+import { Tracer } from '@aws-lambda-powertools/tracer';
+import { captureLambdaHandler } from '@aws-lambda-powertools/tracer/middleware';
+import { config } from '@config';
+import { PlaceBid } from '@dto/place-bid';
+import { ValidationError } from '@errors/validation-error';
 import middy from '@middy/core';
+import httpErrorHandler from '@middy/http-error-handler';
 import { placeBidUseCase } from '@use-cases/place-bid';
 import { schema } from './place-bid.schema';
 
@@ -30,7 +30,7 @@ export const placeBidAdapter = async ({
 
     schemaValidator(schema, bid);
 
-    const created: Bid = await placeBidUseCase(bid);
+    const created: BidResponse = await placeBidUseCase(bid);
 
     metrics.addMetric('SuccessfulPlaceBid', MetricUnit.Count, 1);
 
